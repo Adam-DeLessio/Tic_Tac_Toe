@@ -11,7 +11,6 @@ function startGame() {
 let grid = document.querySelectorAll('.grid-item')
 for (let i = 0; i < grid.length; i++) {
 	grid[i].addEventListener('click', function() {changeColor(grid[i])})
-	grid[i].setAttribute('backgroundColor', 'white')
 }
 
 
