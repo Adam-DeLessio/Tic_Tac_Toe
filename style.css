@@ -8,22 +8,28 @@ body {
 header {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+
 	background-color: lightgray;
 	height: 50px;
 }
 
 .red-turn {
-	/*display: flex;*/
+	display: none;
 	align-items: center;
-	/*display: none;*/
 	background-color: red;
 	height: 100%;
+	left: 0;
+	position: fixed;
 }
 
 .blue-turn {
-	/*display: none;*/
+	display: none;
+	align-items: center;
 	background-color: blue;
+	right: 0;
+	height: 100%;
+	position: fixed;
+
 }
 
 
