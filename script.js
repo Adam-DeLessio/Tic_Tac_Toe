@@ -1,64 +1,44 @@
+let redTurn = true
 
-let counter = 1
-
-let redTurn = document.querySelector('.red-turn')
-let blueTurn = document.querySelector('.blue-turn')
-
+let grid = document.querySelector('.grid-container')
 function startGame() {
-	bluePlayer()
-}
-
-let grid = document.querySelectorAll('.grid-item')
-for (let i = 0; i < grid.length; i++) {
-	grid[i].addEventListener('click', function() {changeColor(grid[i])})
-}
-
-
-function changeColor(grid) {
-	this.grid = grid
-
-	if (counter % 2 === 0) {
-		counter += 1
-		bluePlayer(grid)
-	} else if (counter % 2 === 1) {
-		counter += 1
-		redPlayer(grid)
+	for (let i = 0; i < 9; i++) {
+		let square = document.createElement('div')
+		square.setAttribute('class', 'square')
+		square.setAttribute('id', 'grid' + i)
+		square.setAttribute('data-id', 0)
+		square.style.backgroundColor = 'white'
+		square.addEventListener('click', changeColor)
+		grid.appendChild(square)
 	}
 }
 
-function redPlayer(grid) {
-	this.grid = grid
-	blueTurn.style.display = 'block'
-	redTurn.style.display = 'none'
-	grid.style.backgroundColor = 'red'
+function changeColor(event) {
+	if (redTurn === true && event.target.style.backgroundColor === 'white') {
+		event.target.style.backgroundColor = 'red'
+		redTurn = false
+	} else if (redTurn === true && event.target.style.backgroundColor === 'blue') {
+		changeColor()
+	} else if (redTurn === false && event.target.style.backgroundColor === 'white') {
+		event.target.style.backgroundColor = 'blue'
+		redTurn = true
+	} else {
+		changeColor()
+	}
 }
 
-function bluePlayer(grid) {
-	this.grid = grid
-	redTurn.style.display = 'block'
-	blueTurn.style.display = 'none'
-	grid.style.backgroundColor = 'blue'
-}	
-
-
-
 /// Reset button
-let reset = document.querySelector('.reset')
-reset.addEventListener('click', newGame)
+document.querySelector('.reset').addEventListener('click', newGame)
 
 function newGame() {
-	let gridWhite = document.querySelectorAll('.grid-item')
-	for (let i = 0; i < gridWhite.length; i++) {
-		gridWhite[i].style.backgroundColor = 'white'
-		counter = 1
+	let removeSquare = document.querySelectorAll('.square')
+	for (let i = 0; i < removeSquare.length; i++) {
+		removeSquare[i].remove()
 	}
 	startGame()
 }
 
-
 startGame()
-
-
 
 
 

@@ -41,39 +41,37 @@ header {
 	justify-content: center;
 	margin: 40px;
 }
-
-.grid-item {
+.square {
+	height: 180px;
+	width: 180px;
 	border: 2px solid black;
-	background-color: white;
 }
-
-#grid1 {
+#grid0 {
 	border: 0;
+}
+#grid1 {
+	border-top: 0;
 }
 #grid2 {
 	border-top: 0;
-	border-bottom: 0;
+	border-right: 0;
 }
 #grid3 {
-	border: 0;
-}
-#grid4 {
 	border-left: 0;
+}
+#grid5 {
 	border-right: 0;
 }
 #grid6 {
-	border-right: 0;
 	border-left: 0;
+	border-bottom: 0;
 }
 #grid7 {
-	border: 0;
+	border-bottom: 0;
 }
 #grid8 {
+	border-right: 0;
 	border-bottom: 0;
-	border-top: 0;
-}
-#grid9 {
-	border: 0;
 }
 
 footer {
