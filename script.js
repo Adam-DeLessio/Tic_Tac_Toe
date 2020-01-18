@@ -11,6 +11,7 @@ function startGame() {
 		square.setAttribute('id', 'grid' + i)
 		square.setAttribute('data-id', i)
 		square.style.backgroundColor = 'white'
+		square.style.cursor = 'pointer'
 		square.addEventListener('click', changeColor)
 		grid.appendChild(square)
 	}
@@ -27,7 +28,6 @@ function changeColor(event) {
 		displayBlue.style.display = 'block'
 		displayRed.style.display = 'none'
 		redArray.push(Number(event.target.getAttribute('data-id')))
-
 		checkWin()
 		redTurn = false
 	} else if (redTurn === false && event.target.style.backgroundColor === 'white') {
@@ -35,8 +35,6 @@ function changeColor(event) {
 		displayRed.style.display = 'block'
 		displayBlue.style.display = 'none'
 		blueArray.push(Number(event.target.getAttribute('data-id')))
-
-
 		checkWin()
 		redTurn = true
 	}
@@ -59,17 +57,19 @@ function checkWin() {
 	winningCombos.forEach(check => {
 		if (redArray.includes(check[0]) && redArray.includes(check[1]) && redArray.includes(check[2])) {
 			redWin = true
-			playAgain()
+			playAgain('Red Wins!')
 		} else if (blueArray.includes(check[0]) && blueArray.includes(check[1]) && blueArray.includes(check[2])) {
 			blueWin	= true
-			playAgain()
+			playAgain('Blue Wins!')
 		} else if ((redArray.length + blueArray.length === 9) && redWin != true && blueWin != true)
-			alert("it's a tie")
+			playAgain('Draw!')
 	})
 }
 
-function playAgain() {
-	displayWinner.style.display = 'block'
+function playAgain(color) {
+	this.color = color
+	displayWinner.style.display = 'flex'
+	document.querySelector('.winner').innerHTML = color
 	document.querySelector('.button').addEventListener('click', newGame)
 }
 
