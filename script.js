@@ -24,22 +24,23 @@ function changeColor(event) {
 		event.target.style.backgroundColor = 'red'
 		displayBlue.style.display = 'block'
 		displayRed.style.display = 'none'
-		redArray.push(event.target.getAttribute('data-id'))
+		redArray.push(Number(event.target.getAttribute('data-id')))
+
 		checkWin()
-		console.log(redArray)
 		redTurn = false
 	} else if (redTurn === false && event.target.style.backgroundColor === 'white') {
 		event.target.style.backgroundColor = 'blue'
 		displayRed.style.display = 'block'
 		displayBlue.style.display = 'none'
-		blueArray.push(event.target.getAttribute('data-id'))
+		blueArray.push(Number(event.target.getAttribute('data-id')))
+
+
 		checkWin()
-		console.log(blueArray)
 		redTurn = true
 	}
 }
 
-const winOptions = [
+let winningCombos = [
 	[0, 1, 2],
 	[3, 4, 5],
 	[6, 7, 8],
@@ -51,17 +52,21 @@ const winOptions = [
 ]
 
 function checkWin() {
-	if (redArray.length + blueArray.length === 9) {
-		alert("It's a tie")
-	}
+	let redWin = null
+	let blueWin = null
+	winningCombos.forEach(check => {
+		if (redArray.includes(check[0]) && redArray.includes(check[1]) && redArray.includes(check[2])) {
+			redWin = true
+			alert('red wins')
+		} else if (blueArray.includes(check[0]) && blueArray.includes(check[1]) && blueArray.includes(check[2])) {
+			blueWin	= true
+			alert('blue wins')
+		} else if ((redArray.length + blueArray.length === 9) && redWin != true && blueWin != true)
+			alert("it's a tie")
+	})
 }
 
-
-
-
-
-
-/// Reset button
+// Reset button
 document.querySelector('.reset').addEventListener('click', newGame)
 function newGame() {
 	let removeSquare = document.querySelectorAll('.square')
@@ -77,21 +82,6 @@ function newGame() {
 }
 
 startGame()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
