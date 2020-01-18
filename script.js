@@ -1,6 +1,7 @@
 let redTurn = true
 let displayRed = document.querySelector('.red-turn')
 let displayBlue = document.querySelector('.blue-turn')
+let displayWinner = document.querySelector('.display-winner')
 
 let grid = document.querySelector('.grid-container')
 function startGame() {
@@ -14,6 +15,7 @@ function startGame() {
 		grid.appendChild(square)
 	}
 	displayRed.style.display = 'block'
+	displayWinner.style.display = 'none'
 }
 
 let redArray = []
@@ -57,13 +59,18 @@ function checkWin() {
 	winningCombos.forEach(check => {
 		if (redArray.includes(check[0]) && redArray.includes(check[1]) && redArray.includes(check[2])) {
 			redWin = true
-			alert('red wins')
+			playAgain()
 		} else if (blueArray.includes(check[0]) && blueArray.includes(check[1]) && blueArray.includes(check[2])) {
 			blueWin	= true
-			alert('blue wins')
+			playAgain()
 		} else if ((redArray.length + blueArray.length === 9) && redWin != true && blueWin != true)
 			alert("it's a tie")
 	})
+}
+
+function playAgain() {
+	displayWinner.style.display = 'block'
+	document.querySelector('.button').addEventListener('click', newGame)
 }
 
 // Reset button
