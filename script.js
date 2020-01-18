@@ -15,7 +15,7 @@ function startGame() {
 		square.addEventListener('click', changeColor)
 		grid.appendChild(square)
 	}
-	displayRed.style.display = 'block'
+	displayRed.style.display = 'flex'
 	displayWinner.style.display = 'none'
 }
 
@@ -25,14 +25,14 @@ let blueArray = []
 function changeColor(event) {
 	if (redTurn === true && event.target.style.backgroundColor === 'white') {
 		event.target.style.backgroundColor = 'red'
-		displayBlue.style.display = 'block'
+		displayBlue.style.display = 'flex'
 		displayRed.style.display = 'none'
 		redArray.push(Number(event.target.getAttribute('data-id')))
 		checkWin()
 		redTurn = false
 	} else if (redTurn === false && event.target.style.backgroundColor === 'white') {
 		event.target.style.backgroundColor = 'blue'
-		displayRed.style.display = 'block'
+		displayRed.style.display = 'flex'
 		displayBlue.style.display = 'none'
 		blueArray.push(Number(event.target.getAttribute('data-id')))
 		checkWin()
