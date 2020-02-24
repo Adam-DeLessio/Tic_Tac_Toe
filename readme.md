@@ -9,4 +9,4 @@
 - Javascript
 
 ### Getting Started
-> Fork and clone this repository. Open-in-browser through the HTML file.
+Follow this link to play: https://adam-delessio.github.io/Tic_Tac_Toe/
